@@ -2,11 +2,11 @@ import json
 
 data = [
     {
-        'title':'어린 왕자',
-        'author':'생텍쥐페리'
+        'title':'컴퓨터',
+        'date':'2026-09-01'
     }
 ]
-with open('books.json','w',encoding='utf-8') as file:
+with open('objects.json','w',encoding='utf-8') as file:
     json.dump(
         data,
         file,

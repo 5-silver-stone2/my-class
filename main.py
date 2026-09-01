@@ -1,17 +1,17 @@
-from book_manager import BookManager
+from object_manager import ObjectManager
 
 def show_menu():
-  print('1. 책 등록')
-  print('2. 책 목록 보기')
-  print('3. 평점 입력')
-  print('4. 독서 완료 처리')
-  print('5. 책 삭제')
-  print('6. 책 검색')
-  print('7. 독서 통계')
+  print('1. 대여장비 등록')
+  print('2. 대여장비 목록 보기')
+  print('3. 장비 평점 입력')
+  print('4. 대여 완료 처리')
+  print('5. 대여장비 삭제')
+  print('6. 대여장비 검색')
+  print('7. 대여장비 통계')
   print('0. 종료')
 
 def main():
-  manager = BookManager()
+  manager = ObjectManager()
 
   while True:
     print()
@@ -21,60 +21,60 @@ def main():
     print()
 
     if choice == "1":
-      title = input("책 제목: ").strip()
-      author = input("저자: ").strip()
+      title = input("장비 이름: ").strip()
+      date = input("날자: ").strip()
 
-      if title == "" or author == "":
-        print("책 제목과 저자를 모두 입력하세요.")
+      if title == "" or date == "":
+        print("장비 이름과 날자를 모두 입력하세요.")
       else:
-        manager.add_book(title, author)
+        manager.add_object(title, date)
 
     elif choice == "2":
-      manager.show_books()
+      manager.show_objects()
 
     elif choice == "3":
-      if len(manager.books) == 0:
+      if len(manager.objects) == 0:
         print("등록된 책이 없습니다.")
         continue
 
-      manager.show_books()
+      manager.show_objects()
 
       try:
-        number = int(input("평점을 입력할 책 번호: "))
+        number = int(input("평점을 입력할 장비 번호: "))
         rating = int(input("평점(1~5): "))
         manager.set_rating(number, rating)
       except ValueError:
-        print("책 번호와 평점은 숫자로 입력하세요.")
+        print("장비 번호와 평점은 숫자로 입력하세요.")
 
     elif choice == "4":
-      if len(manager.books) == 0:
-        print("등록된 책이 없습니다.")
+      if len(manager.objects) == 0:
+        print("등록된 장비가 없습니다.")
         continue
 
-      manager.show_books()
+      manager.show_objects()
 
       try:
-        number = int(input("완료 처리할 책 번호: "))
-        manager.finish_book(number)
+        number = int(input("완료 처리할 장비 번호: "))
+        manager.finish_object(number)
       except ValueError:
-        print("책 번호는 숫자로 입력하세요.")
+        print("장비 번호는 숫자로 입력하세요.")
 
     elif choice == "5":
-      if len(manager.books) == 0:
-        print("등록된 책이 없습니다.")
+      if len(manager.objects) == 0:
+        print("등록된 장비가 없습니다.")
         continue
 
-      manager.show_books()
+      manager.show_objects()
 
       try:
-        number = int(input("삭제할 책 번호: "))
-        manager.delete_book(number)
+        number = int(input("삭제할 장비 번호: "))
+        manager.delete_object(number)
       except ValueError:
-        print("책 번호는 숫자로 입력하세요.")
+        print("장비 번호는 숫자로 입력하세요.")
 
     elif choice == "6":
-      keyword = input("검색할 책 제목 또는 저자: ")
-      manager.search_book(keyword)
+      keyword = input("검색할 장비이름 또는 날자: ")
+      manager.search_object(keyword)
 
     elif choice == "7":
       manager.show_stats()
