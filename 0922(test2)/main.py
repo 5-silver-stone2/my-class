@@ -39,13 +39,7 @@ def print_songs(rows):
     artist = row[2]
     album = row[3]
     rating = row[4]
-    finished = row[5]
-
-    if finished == 0:
-        status = '미완료'
-    else:
-        status = '완료'
-
+    
     if rating == 0: rating_text = '평점 없음'
     else: rating_text = f"{rating}점"
 

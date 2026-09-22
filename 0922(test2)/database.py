@@ -44,10 +44,6 @@ def get_all_songs():
     conn.close()
     return rows
 
-#create_table()
-#add_song('어린왕자','생택쥐페리')
-#add_song('데미안','헤르만헤세')
-#print(get_all_songs())
 
 def update_rating(_id, rating):
     conn = connect_db()
@@ -59,9 +55,6 @@ def update_rating(_id, rating):
     changed = cursor.rowcount
     conn.close()
     return changed
-
-#print(update_rating(1,4))
-#print(get_all_songs())
 
 def toggle_finished(song_id):
     conn = connect_db()
@@ -86,9 +79,6 @@ def toggle_finished(song_id):
     conn.close()
     return True
 
-#toggle_finished(1)
-#print(get_all_songs())
-
 def delete_song(song_id):
     conn = connect_db()
     cursor = conn.cursor()
@@ -109,8 +99,7 @@ def search_songs(keyword):
     FROM songs
     WHERE title LIKE ?
     ORDER BY id
-    """, (f"%{keyword}%",)) #%는 압뒤로 다른 문자가 있어도 된다는표시
-
+    """, (f"%{keyword}%",)) 
     rows = cursor.fetchall()
     conn.close()
     return rows
